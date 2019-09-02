@@ -2,6 +2,7 @@
 Celso Antonio - August 2019 
 '''
 
+import matplotlib.pyplot as plt
 import csv
 import math
 
@@ -52,6 +53,22 @@ print('Classified as Class ' +  cClass)
 print('New classified coords added to the dataset')
 
 myCsvRow = '' + str(len(data) + 1) + ',' + str(newObj[0]) + ',' + str(newObj[1]) + ',' + cClass
+
+x = list()
+y = list()
+z = list()
+
+for obj in data:
+    x.append(int(obj['X']))
+    y.append(int(obj['Y']))
+    z.append(obj['Class'])
+
+x.append(int(newObj[0]))
+y.append(int(newObj[1]))
+z.append(cClass)
+
+plt.scatter(x, y, c=z)
+plt.show()
 
 with open('dataset.csv','a') as fd:
     fd.write(myCsvRow + "\n")
